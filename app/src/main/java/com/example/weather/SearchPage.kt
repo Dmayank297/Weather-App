@@ -1,9 +1,11 @@
 package com.example.weather
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -17,19 +19,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.weather.model.WeatherViewModel
 
 @Composable
-fun SearchPage(modifier: Modifier) {
+fun SearchPage(
+    modifier: Modifier,
+    viewModel: WeatherViewModel
+) {
     var city by remember {mutableStateOf("")}
 
     Column (
-        modifier = Modifier.fillMaxWidth(1f),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Row(
             modifier = Modifier.padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             OutlinedTextField(
                 modifier = Modifier.weight(1f),
@@ -39,11 +49,15 @@ fun SearchPage(modifier: Modifier) {
             },
                 label = {
                     Text(text = "Enter City Name")
-                }
+                },
+                shape = RoundedCornerShape(16.dp)
             )
             
             IconButton(onClick = {
-            //TODO: Call viewModel to fetch city data
+            // Call viewModel to fetch city data
+                viewModel.getData(city)
+                city = ""
+
             }) {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -51,4 +65,11 @@ fun SearchPage(modifier: Modifier) {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSearch() {
+    val weatherViewModel = WeatherViewModel()
+    SearchPage(modifier = Modifier, weatherViewModel)
 }

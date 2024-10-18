@@ -1,13 +1,21 @@
 package com.example.weather.model
 
 
-import android.util.Log
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.weather.Api.ApiKey
+import com.example.weather.Api.RetrofitInstance
+import kotlinx.coroutines.launch
 
 class WeatherViewModel: ViewModel() {
 
+    private val weatherApi = RetrofitInstance.weatherApi
+
     fun getData(city: String) {
-        Log.i("City", city)
+        viewModelScope.launch {
+            // Getting the data is asynchronous process obv
+            weatherApi.getWeather(ApiKey.apiKey, city)
+        }
+
     }
 }

@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherData(
     @SerializedName("current")
-    val current: Current?,
+    val current: Current,
     @SerializedName("location")
-    val location: Location?
+    val location: Location
 ) {
     data class Current(
         @SerializedName("cloud")
-        val cloud: String?,
+        val cloud: String,
         @SerializedName("condition")
         val condition: Condition?,
         @SerializedName("dewpoString_c")
@@ -47,7 +47,7 @@ data class WeatherData(
         @SerializedName("pressure_mb")
         val pressureMb: String?,
         @SerializedName("temp_c")
-        val tempC: String?,
+        val tempC: String,
         @SerializedName("temp_f")
         val tempF: String?,
         @SerializedName("uv")
@@ -81,9 +81,9 @@ data class WeatherData(
 
     data class Location(
         @SerializedName("country")
-        val country: String?,
+        val country: String,
         @SerializedName("lat")
-        val lat: String?,
+        val lat: String,
         @SerializedName("localtime")
         val localtime: String?,
         @SerializedName("localtime_epoch")
@@ -91,7 +91,7 @@ data class WeatherData(
         @SerializedName("lon")
         val lon: String?,
         @SerializedName("name")
-        val name: String?,
+        val name: String,
         @SerializedName("region")
         val region: String?,
         @SerializedName("tz_id")

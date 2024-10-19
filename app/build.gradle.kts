@@ -57,6 +57,15 @@ dependencies {
     //GSOn Converter
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
+    // LIve data
+    implementation("androidx.compose.runtime:runtime-livedata:1.7.4")
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    implementation("androidx.compose.ui:ui:1.7.4")
+    implementation("androidx.compose.material:material:1.7.4")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.7.4")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
